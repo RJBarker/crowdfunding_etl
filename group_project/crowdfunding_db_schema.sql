@@ -1,7 +1,9 @@
-﻿DROP TABLE "campaign" CASCADE;
-DROP TABLE "category" CASCADE;
-DROP TABLE "contacts" CASCADE;
-DROP TABLE "subcategory" CASCADE;
+﻿-- Drop tables if already exist.
+-- Remove comment if required
+--DROP TABLE "campaign" CASCADE;
+--DROP TABLE "category" CASCADE;
+--DROP TABLE "contacts" CASCADE;
+--DROP TABLE "subcategory" CASCADE;
 
 
 CREATE TABLE "campaign" (
@@ -9,8 +11,8 @@ CREATE TABLE "campaign" (
     "contact_id" int   NOT NULL,
     "company_name" varchar(64)   NOT NULL,
     "description" varchar(64)   NOT NULL,
-    "goal" numeric(10)   NOT NULL,
-    "pledged" numeric(10)   NOT NULL,
+    "goal" numeric(10,2)   NOT NULL,
+    "pledged" numeric(10,2)   NOT NULL,
     "outcome" varchar(25)   NOT NULL,
     "backers_count" int   NOT NULL,
     "country" varchar(5)   NOT NULL,
@@ -60,3 +62,15 @@ ALTER TABLE "contacts" ADD CONSTRAINT "fk_contacts_contact_id" FOREIGN KEY("cont
 REFERENCES "campaign" ("contact_id");
 
 -- Import order: (1) category, (2) subcategory, (3) campaign, (4) contacts
+
+SELECT * FROM category;
+
+SELECT * FROM subcategory;
+
+SELECT * FROM campaign;
+
+SELECT * FROM contacts;
+
+
+
+
