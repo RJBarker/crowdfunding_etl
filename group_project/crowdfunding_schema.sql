@@ -1,9 +1,9 @@
-﻿--- Drop tables if already exist.
+﻿-- Drop tables if already exist.
 --- Remove comment if required
---DROP TABLE "campaign" CASCADE;
---DROP TABLE "category" CASCADE;
---DROP TABLE "contacts" CASCADE;
---DROP TABLE "subcategory" CASCADE;
+-- DROP TABLE "campaign" CASCADE;
+-- DROP TABLE "category" CASCADE;
+-- DROP TABLE "contacts" CASCADE;
+-- DROP TABLE "subcategory" CASCADE;
 
 
 CREATE TABLE "campaign" (
@@ -22,7 +22,7 @@ CREATE TABLE "campaign" (
     "category_id" varchar(10)   NOT NULL,
     "subcategory_id" varchar(10)   NOT NULL,
     CONSTRAINT "pk_campaign" PRIMARY KEY (
-        "cf_id"
+        "contact_id"
      )
 );
 
@@ -52,16 +52,16 @@ CREATE TABLE "contacts" (
      )
 );
 
-ALTER TABLE "campaign" ADD CONSTRAINT "fk_campaign_contact_id" FOREIGN KEY("contact_id")
-REFERENCES "contacts" ("contact_id");
-
 ALTER TABLE "campaign" ADD CONSTRAINT "fk_campaign_category_id" FOREIGN KEY("category_id")
 REFERENCES "category" ("category_id");
 
 ALTER TABLE "campaign" ADD CONSTRAINT "fk_campaign_subcategory_id" FOREIGN KEY("subcategory_id")
 REFERENCES "subcategory" ("subcategory_id");
 
--- Import order: (1) category, (2) subcategory, (3) contacts, (4) campaign
+ALTER TABLE "contacts" ADD CONSTRAINT "fk_contacts_contact_id" FOREIGN KEY("contact_id")
+REFERENCES "campaign" ("contact_id");
+
+-- Import order: (1) category, (2) subcategory, (3) campaign, (4) contacts
 
 SELECT * FROM category;
 
